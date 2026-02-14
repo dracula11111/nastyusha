@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💕 Валентинка для Настюши 💕</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Pacifico&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Caveat', cursive;
+            background: linear-gradient(135deg, #ffeef8 0%, #ffe0f0 50%, #ffd4ea 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        /* Фоновые сердечки */
+        .bg-hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+        
+        .bg-heart {
+            position: absolute;
+            font-size: 20px;
+            opacity: 0.1;
+            animation: float 15s infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-30px) rotate(10deg); }
+        }
+        
+        .container {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 30px;
+            box-shadow: 0 20px 60px rgba(255, 105, 180, 0.3);
+            max-width: 600px;
+            animation: slideIn 0.8s ease-out;
+        }
+        
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px) scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+        
+        .sticker {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 30px;
+            animation: bounce 2s ease-in-out infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .sticker img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        
+        .question {
+            font-size: 42px;
+            font-weight: 700;
+            color: #ff1493;
+            margin-bottom: 20px;
+            line-height: 1.4;
+            text-shadow: 2px 2px 4px rgba(255, 105, 180, 0.3);
+        }
+        
+        .crossed-word {
+            position: relative;
+            display: inline-block;
+            color: #ff1493;
+        }
+        
+        .crossed-word::before,
+        .crossed-word::after,
+        .crossed-word .line1,
+        .crossed-word .line2,
+        .crossed-word .line3,
+        .crossed-word .line4,
+        .crossed-word .line5 {
+            content: '';
+            position: absolute;
+            left: -5%;
+            width: 110%;
+            height: 4px;
+            background: #333;
+            transform-origin: center;
+        }
+        
+        .crossed-word::before {
+            top: 20%;
+            transform: rotate(-8deg);
+        }
+        
+        .crossed-word::after {
+            top: 50%;
+            transform: rotate(5deg);
+        }
+        
+        .crossed-word .line1 {
+            top: 35%;
+            transform: rotate(-3deg);
+        }
+        
+        .crossed-word .line2 {
+            top: 65%;
+            transform: rotate(7deg);
+        }
+        
+        .crossed-word .line3 {
+            top: 45%;
+            transform: rotate(-10deg);
+        }
+        
+        .crossed-word .line4 {
+            top: 55%;
+            transform: rotate(12deg);
+        }
+        
+        .crossed-word .line5 {
+            top: 40%;
+            transform: rotate(4deg);
+        }
+        
+        .attack-text {
+            font-size: 48px;
+            font-family: 'Pacifico', cursive;
+            color: #ff69b4;
+            margin-bottom: 30px;
+            opacity: 0;
+            transform: scale(0);
+            animation: popIn 0.5s ease-out forwards;
+            text-shadow: 3px 3px 6px rgba(255, 105, 180, 0.4);
+        }
+        
+        @keyframes popIn {
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        
+        .buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            align-items: center;
+            margin-top: 40px;
+            transition: all 0.3s ease;
+        }
+        
+        .btn {
+            font-family: 'Caveat', cursive;
+            font-size: 32px;
+            font-weight: 700;
+            padding: 20px 40px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-yes {
+            background: linear-gradient(135deg, #ff69b4 0%, #ff1493 100%);
+            color: white;
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        .btn-yes:hover {
+            transform: scale(1.1);
+            box-shadow: 0 12px 30px rgba(255, 20, 147, 0.4);
+        }
+        
+        .btn-no {
+            background: linear-gradient(135deg, #ddd 0%, #bbb 100%);
+            color: #666;
+        }
+        
+        .btn-no:hover {
+            background: linear-gradient(135deg, #ccc 0%, #aaa 100%);
+        }
+        
+        /* Летящие сердечки */
+        .heart {
+            position: fixed;
+            font-size: 40px;
+            pointer-events: none;
+            z-index: 1000;
+            animation: fly 3s ease-in-out forwards;
+        }
+        
+        @keyframes fly {
+            0% {
+                transform: translateY(0) rotate(0deg) scale(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            100% {
+                transform: translateY(-150vh) rotate(360deg) scale(1.5);
+                opacity: 0;
+            }
+        }
+        
+        /* Конфетти эффект */
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            pointer-events: none;
+            z-index: 1000;
+            animation: confettiFall 3s ease-in-out forwards;
+        }
+        
+        @keyframes confettiFall {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+        
+        /* Success screen */
+        .success-screen {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #ff69b4 0%, #ff1493 50%, #c71585 100%);
+            z-index: 999;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.5s ease-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .success-content {
+            text-align: center;
+            color: white;
+            animation: successPop 0.8s ease-out;
+        }
+        
+        @keyframes successPop {
+            0% {
+                transform: scale(0) rotate(-180deg);
+                opacity: 0;
+            }
+            70% {
+                transform: scale(1.2) rotate(10deg);
+            }
+            100% {
+                transform: scale(1) rotate(0deg);
+                opacity: 1;
+            }
+        }
+        
+        .success-content .sticker {
+            width: 300px;
+            height: 300px;
+            filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.3));
+        }
+        
+        .success-title {
+            font-family: 'Pacifico', cursive;
+            font-size: 72px;
+            margin: 30px 0;
+            text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3);
+            animation: rainbow 3s ease-in-out infinite;
+        }
+        
+        @keyframes rainbow {
+            0%, 100% { color: #fff; }
+            25% { color: #ffeb3b; }
+            50% { color: #ffc0cb; }
+            75% { color: #fff59d; }
+        }
+        
+        .success-message {
+            font-size: 36px;
+            margin-top: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <!-- Фоновые сердечки -->
+    <div class="bg-hearts" id="bgHearts"></div>
+    
+    <!-- Основной контейнер -->
+    <div class="container" id="mainContainer">
+        <div class="sticker">
+            <img src="sticker1.webp" alt="Sticker" id="stickerImg">
+        </div>
+        
+        <div class="question" id="questionText">
+            настьюшоо ти будеш маеи 
+            <span class="crossed-word">
+                валентикнкай
+                <span class="line1"></span>
+                <span class="line2"></span>
+                <span class="line3"></span>
+                <span class="line4"></span>
+                <span class="line5"></span>
+            </span>
+        </div>
+        
+        <div class="attack-text" id="attackText" style="display: none;">
+            Атакуйу 💘
+        </div>
+        
+        <div class="buttons" id="buttonsContainer">
+            <button class="btn btn-yes" id="btnYes">Дьа!</button>
+            <button class="btn btn-no" id="btnNo">Нье</button>
+        </div>
+    </div>
+    
+    <!-- Success screen -->
+    <div class="success-screen" id="successScreen">
+        <div class="success-content">
+            <div class="sticker">
+                <img src="love.webp" alt="Love" id="loveSticker">
+            </div>
+            <div class="success-title">💕 Ура! 💕</div>
+            <div class="success-message">Ти моя валентинка! 💖</div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
